@@ -1,6 +1,5 @@
 <!-- Black Friday · Эльмира Первакова. Вставьте целиком в блок T123 «HTML-код» на ПУСТОЙ странице Tilda.
-     Перед публикацией: 1) загрузите 9 картинок в Tilda и впишите ссылки в images (ниже, в config);
-     2) заполните ссылки на оплату и реквизиты; 3) previewMode: false. -->
+     Картинки подгружаются с GitHub Pages (должен быть включён). Настройки в блоке config ниже. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Oranienbaum&display=swap&subset=cyrillic" rel="stylesheet">
 <style>
@@ -336,7 +335,7 @@ img{max-width:100%}
 window.SITE_CONFIG = {
   // true — пока не заполнено всё нужное: показываются заглушки.
   // false — для публикации: пустые поля скрываются, кнопки без ссылки не показываются.
-  previewMode: true,
+  previewMode: false,
 
   // Окончание акции (ISO с часовым поясом). Пусто — таймер и даты скрыты, в тексте «Только сейчас».
   saleEndsAt: '2026-11-30T23:59:59+03:00',
@@ -367,7 +366,7 @@ window.SITE_CONFIG = {
 
   // Адреса картинок. Пусто — берутся из папки assets/.
   // Для Tilda: загрузите файлы и впишите их ссылки, например bride: 'https://static.tildacdn.com/...'
-  images: { bride: '', bathroom: '', evening: '', vanity: '', dior: '', envelope: '', tablet: '', 'elmira-mirror': '', 'bg-flowers': '' },
+  images: { 'bride': 'https://aliseemore-dotcom.github.io/elmira-black-friday/assets/bride.jpg', 'bathroom': 'https://aliseemore-dotcom.github.io/elmira-black-friday/assets/bathroom.jpg', 'evening': 'https://aliseemore-dotcom.github.io/elmira-black-friday/assets/evening.jpg', 'vanity': 'https://aliseemore-dotcom.github.io/elmira-black-friday/assets/vanity.jpg', 'dior': 'https://aliseemore-dotcom.github.io/elmira-black-friday/assets/dior.jpg', 'envelope': 'https://aliseemore-dotcom.github.io/elmira-black-friday/assets/envelope.jpg', 'tablet': 'https://aliseemore-dotcom.github.io/elmira-black-friday/assets/tablet.jpg', 'elmira-mirror': 'https://aliseemore-dotcom.github.io/elmira-black-friday/assets/elmira-mirror.jpg', 'bg-flowers': 'https://aliseemore-dotcom.github.io/elmira-black-friday/assets/bg-flowers.jpg' },
 
   // Подвал
   sellerDetails: '',         // реквизиты, переносы строк сохраняются
