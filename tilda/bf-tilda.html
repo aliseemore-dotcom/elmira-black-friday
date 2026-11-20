@@ -105,7 +105,7 @@ img{max-width:100%}
 .prod__sub{margin:0;font-size:var(--fs);line-height:1.4;text-wrap:pretty}
 .prod__meta{font-size:var(--fs-s);color:var(--text-3)}
 .prod__grid{display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(16px,2vw,32px)}
-.prod__photo{position:relative;min-width:0;aspect-ratio:4/5;max-height:80svh;background:var(--ph)}
+.prod__photo{position:relative;min-width:0;aspect-ratio:4/5;max-height:80svh;justify-self:center;width:100%;background:var(--ph)}
 .prod__photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .prod__items{min-width:0;display:flex;flex-direction:column;gap:clamp(12px,1.4vw,20px)}
 .item{flex:1 1 auto;background:var(--card);padding:clamp(20px,2.2vw,30px);display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
@@ -217,7 +217,7 @@ img{max-width:100%}
   .show-narrow{display:inline}
   .prod,.offers{scroll-margin-top:52px}
   .strip{flex-direction:column;align-items:stretch}
-  .strip__btn{flex:none;width:100%}
+  .strip__btn{flex:none;width:100%;padding:0 16px;font-size:16px;white-space:nowrap}
   .steps__h2b{padding-left:12%}
   .hero__top{white-space:nowrap}
   .hero__top .muted{display:none}
@@ -345,9 +345,9 @@ window.SITE_CONFIG = {
   // Цены, ₽ (проценты и экономия считаются автоматически)
   coursePrice: 3990,
   courseOldPrice: 7000,
-  sunmakeupPrice: 1990,
+  sunmakeupPrice: 1900,
   sunmakeupOldPrice: 5000,
-  bundlePrice: 5690,
+  bundlePrice: 5780,
   bundleOldPrice: 12000,
 
   // Ссылки на оплату (Продамус)

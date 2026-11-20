@@ -11,9 +11,9 @@ window.SITE_CONFIG = {
   // Цены, ₽ (проценты и экономия считаются автоматически)
   coursePrice: 3990,
   courseOldPrice: 7000,
-  sunmakeupPrice: 1990,
+  sunmakeupPrice: 1900,
   sunmakeupOldPrice: 5000,
-  bundlePrice: 5690,
+  bundlePrice: 5780,
   bundleOldPrice: 12000,
 
   // Ссылки на оплату (Продамус)
