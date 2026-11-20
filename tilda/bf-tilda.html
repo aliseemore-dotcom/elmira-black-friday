@@ -1,0 +1,654 @@
+<!-- Black Friday · Эльмира Первакова. Вставьте целиком в блок T123 «HTML-код» на ПУСТОЙ странице Tilda.
+     Перед публикацией: 1) загрузите 9 картинок в Tilda и впишите ссылки в images (ниже, в config);
+     2) заполните ссылки на оплату и реквизиты; 3) previewMode: false. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Oranienbaum&display=swap&subset=cyrillic" rel="stylesheet">
+<style>
+/* ===== Black Friday v7 · Эльмира Первакова =====
+   Шрифты: Oranienbaum — заголовки (капс) и ВСЕ цифры; Montserrat 400/600 — весь остальной текст.
+   Основной текст 17/16 px, мелкий 14 px, метки 12 px. */
+:root{
+  --maroon:#8B1916; --maroon-h:#6E1311; --maroon-bar:#A82320; --maroon-dk:#5E0D0B;
+  --red:#E0322E;
+  --text:#2B2B2B; --text-2:#5A5352; --text-3:#6E6767; --text-4:#8A8282;
+  --gray-b:#BDBDBD; --old-m:#E3B3B3; --on-m:#F2D9DA; --on-m-2:#F7E6E6;
+  --card:#F5F4F4; --bg2:#FAF8F8; --ph:#F2ECEC; --line:#E5E5E5;
+  --display:'Oranienbaum','Montserrat',serif;
+  --sans:'Montserrat','Helvetica Neue',Arial,sans-serif;
+  --pad:clamp(20px,3vw,40px);
+  --bar:56px;
+  --fs:17px; --fs-s:14px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{margin:0;padding:0;background:#fff}
+body{overflow-x:clip;font-family:var(--sans);font-size:var(--fs);line-height:1.55;font-weight:400;color:var(--text);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+a:hover{color:var(--maroon)}
+button{font-family:inherit}
+img{max-width:100%}
+[hidden]{display:none!important}
+:focus-visible{outline:2px solid var(--maroon);outline-offset:3px}
+@keyframes bf-blink{0%,100%{opacity:1}50%{opacity:.35}}
+@keyframes bf-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
+
+.accent{color:var(--maroon)}
+.muted{color:var(--text-3)}
+.pre{white-space:pre-line}
+.show-narrow{display:none}
+.line{display:block}
+
+/* Заголовки: Oranienbaum, только капс */
+.h1,.h2,.card__name{font-family:var(--display);font-weight:400;text-transform:uppercase;margin:0;text-wrap:balance}
+.h1{font-size:clamp(32px,3.2vw,48px);line-height:.95;letter-spacing:-.01em}
+.h2{font-size:clamp(48px,6.4vw,100px);line-height:.88;letter-spacing:-.02em}
+.h2--xl{font-size:clamp(46px,7vw,116px)}
+.h2--lg{font-size:clamp(44px,5.6vw,88px);line-height:.9}
+
+/* Кнопки */
+.btn{display:flex;align-items:center;justify-content:center;border:0;font-family:var(--sans);font-weight:600;letter-spacing:.01em;cursor:pointer;text-decoration:none;transition:background .25s ease,color .25s ease,border-color .25s ease}
+.btn--maroon{background:var(--maroon);color:#fff}
+.btn--maroon:hover{background:var(--maroon-h);color:#fff}
+.btn--white{background:#fff;color:var(--text)}
+.btn--white:hover{background:var(--on-m);color:var(--text)}
+
+/* Плашка */
+.bar{position:fixed;left:0;right:0;top:0;z-index:50;background:#000;color:#fff}
+.bar__in{max-width:1440px;margin:0 auto;height:var(--bar);padding:0 clamp(12px,3vw,40px);display:flex;align-items:center;gap:clamp(10px,2vw,28px)}
+.bar-spacer{height:var(--bar)}
+.bar__dot{flex:none;width:8px;height:8px;border-radius:50%;background:var(--red);animation:bf-blink 1.6s ease-in-out infinite}
+.bar__bf{flex:none;font-family:var(--display);font-size:clamp(17px,1.6vw,22px);line-height:1;text-transform:uppercase;white-space:nowrap}
+.bar__badge{flex:none;background:var(--red);color:#fff;font-family:var(--display);font-size:clamp(17px,1.6vw,22px);line-height:1;padding:5px 8px 3px;white-space:nowrap}
+.bar__note{flex:1 1 0;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-size:var(--fs-s);color:var(--gray-b);display:none}
+.bar__timer{flex:none;display:flex;align-items:baseline;gap:clamp(4px,.8vw,10px);margin-left:auto}
+.bar__ended{flex:none;font-size:var(--fs-s);color:var(--gray-b);margin-left:auto}
+.bar__unit{display:flex;align-items:baseline;gap:3px}
+.bar__unit b{font-family:var(--display);font-weight:400;font-size:clamp(20px,2vw,28px);line-height:1;font-variant-numeric:tabular-nums}
+.bar__unit i{font-style:normal;font-size:12px;color:var(--gray-b)}
+.bar__btn{flex:none;height:36px;padding:0 clamp(10px,1.4vw,18px);border:0;border-radius:0;background:var(--maroon);color:#fff;font-size:var(--fs-s);font-weight:600;cursor:pointer;white-space:nowrap;transition:background .2s ease}
+.bar__btn:hover{background:var(--maroon-bar)}
+@media (min-width:1100px){.bar__note{display:block}.bar__timer,.bar__ended{margin-left:0}}
+
+/* Первый экран */
+.hero{max-width:1440px;margin:0 auto;padding:clamp(16px,2.4vw,28px) var(--pad) clamp(40px,6vw,80px);display:flex;flex-direction:column;gap:clamp(16px,2.4vw,28px)}
+.hero__top{display:flex;justify-content:space-between;gap:16px;align-items:baseline;font-size:var(--fs-s);line-height:1.25}
+.hero__grid{display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(28px,4vw,64px);align-items:stretch}
+.hero__left{min-width:0;display:flex;flex-direction:column;justify-content:space-between;gap:clamp(28px,3vw,48px)}
+.hero__bf{container-type:inline-size;font-family:var(--display);text-transform:uppercase;line-height:.8;letter-spacing:-.03em}
+.hero__bf>div{font-size:34.5cqi}
+.hero__copy{display:flex;flex-direction:column;gap:clamp(20px,2.2vw,28px)}
+.hero__btn{width:100%;max-width:400px;height:64px;padding:0 32px;font-size:18px}
+.proof{display:flex;align-items:center;gap:16px;padding-top:clamp(16px,1.8vw,22px);border-top:1px solid var(--line)}
+.proof__n{flex:none;font-family:var(--display);font-size:clamp(40px,3.6vw,56px);line-height:.9;color:var(--maroon)}
+.proof__t{font-size:var(--fs-s);line-height:1.4;max-width:280px}
+.hero__photo{position:relative;min-width:0;align-self:start;background:#111}
+.hero__photo img{display:block;width:100%;height:auto}
+.hero__ended{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);background:#fff;padding:12px 24px 10px;font-size:18px;font-weight:600;line-height:1;white-space:nowrap}
+@media (min-width:1000px){.hero__grid{grid-template-columns:minmax(0,5fr) minmax(0,6fr)}}
+
+/* Бегущая строка */
+.marquee{background:#000;overflow:hidden;padding:15px 0 13px}
+.marquee__track{display:flex;width:max-content;font-family:var(--display);font-size:clamp(22px,2.4vw,34px);line-height:1;text-transform:uppercase;animation:bf-marquee 38s linear infinite}
+.marquee__t{white-space:nowrap}
+.marquee__sep{display:inline-block;flex:none;align-self:center;width:.6em;height:.6em;margin:0 28px;background:var(--red);-webkit-mask:var(--star) center/contain no-repeat;mask:var(--star) center/contain no-repeat}
+:root{--star:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 0C12.9 7 17 11.1 24 12 17 12.9 12.9 17 12 24 11.1 17 7 12.9 0 12 7 11.1 11.1 7 12 0Z'/%3E%3C/svg%3E")}
+
+/* Блоки продуктов */
+.prod{scroll-margin-top:56px}
+.prod__in{max-width:1440px;margin:0 auto;padding:clamp(72px,10vw,150px) var(--pad) 0;display:flex;flex-direction:column;gap:clamp(32px,4vw,56px)}
+.prod__head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px 48px}
+.prod__title{display:flex;flex-direction:column;gap:14px;min-width:0}
+.prod__title .h2{max-width:900px}
+.kicker{font-size:var(--fs-s);color:var(--text-3)}
+.prod__side{flex:0 1 440px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.prod__sub{margin:0;font-size:var(--fs);line-height:1.4;text-wrap:pretty}
+.prod__meta{font-size:var(--fs-s);color:var(--text-3)}
+.prod__grid{display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(16px,2vw,32px)}
+.prod__photo{position:relative;min-width:0;aspect-ratio:4/5;max-height:80svh;background:var(--ph)}
+.prod__photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.prod__items{min-width:0;display:flex;flex-direction:column;gap:clamp(12px,1.4vw,20px)}
+.item{flex:1 1 auto;background:var(--card);padding:clamp(20px,2.2vw,30px);display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+.item__t{font-size:clamp(17px,1.5vw,22px);line-height:1.2;font-weight:600;text-wrap:balance}
+.item__n{flex:none;font-family:var(--display);font-size:clamp(30px,2.6vw,42px);line-height:.8;color:var(--text-4)}
+.strip{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:24px 40px;padding:clamp(28px,3vw,40px);background:var(--maroon);color:#fff}
+.strip__prices{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 18px}
+.price{font-family:var(--display);font-weight:400;letter-spacing:0}
+.strip__price{font-size:clamp(56px,6vw,88px);line-height:1}
+.strip__old{font-family:var(--display);font-size:clamp(24px,2.4vw,34px);color:var(--old-m);text-decoration-thickness:2px}
+.pct{background:#fff;color:var(--maroon);font-family:var(--display);font-size:26px;line-height:1;padding:7px 11px 5px}
+.strip__btn{flex:0 1 340px;height:66px;padding:0 32px;font-size:18px}
+.ended{font-size:var(--fs)}
+@media (min-width:1000px){
+  .prod__grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .prod__photo{aspect-ratio:auto;max-height:none;min-height:clamp(320px,40vw,640px)}
+}
+
+/* Коллаж */
+.collage{position:relative;overflow:hidden}
+.collage__in{max-width:1440px;margin:0 auto;padding:clamp(80px,10vw,150px) var(--pad) clamp(40px,6vw,80px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"a b" "t t";gap:clamp(16px,4vw,64px);align-items:center}
+.collage__a,.collage__b{position:relative;aspect-ratio:3/4;width:100%;background:var(--ph)}
+.collage__a{grid-area:a;align-self:start;max-width:340px}
+.collage__b{grid-area:b;align-self:end;justify-self:end;max-width:300px}
+.collage__a img,.collage__b img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.collage__t{grid-area:t;display:flex;flex-direction:column;align-items:center;gap:clamp(20px,3vw,40px);text-align:center;padding:clamp(16px,4vw,64px) 0}
+.collage__h{margin:0;font-family:var(--display);text-transform:uppercase;font-size:clamp(38px,4.8vw,78px);line-height:.95;letter-spacing:-.02em;text-wrap:balance}
+.collage__s{margin:0;max-width:560px;font-size:clamp(17px,1.5vw,22px);line-height:1.4;text-wrap:balance}
+@media (min-width:1000px){.collage__in{grid-template-columns:minmax(0,1fr) minmax(0,2fr) minmax(0,1fr);grid-template-areas:"a t b"}}
+
+/* Тарифы */
+.offers{scroll-margin-top:56px;background:var(--bg2)}
+.offers__in{max-width:1440px;margin:0 auto;padding:clamp(72px,10vw,150px) var(--pad);display:flex;flex-direction:column;align-items:center;gap:clamp(44px,6vw,88px)}
+.offers__head{display:flex;flex-direction:column;align-items:center;gap:20px;text-align:center}
+.offers__note{font-size:var(--fs);line-height:1.4}
+.cards{width:100%;display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(16px,2vw,32px);align-items:stretch;max-width:560px}
+.card-wrap{position:relative;height:100%;scroll-margin-top:80px}
+.card-wrap__shadow{position:absolute;inset:6px -4px -8px 4px;background:var(--maroon-dk);transform:rotate(-2.2deg)}
+.card{position:relative;height:100%;background:var(--card);color:var(--text);padding:clamp(28px,3vw,44px);display:flex;flex-direction:column;gap:18px}
+.card--feat{background:var(--maroon);color:#fff}
+.card__badges{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.card__pct{align-self:flex-start;background:#000;color:#fff;font-family:var(--display);font-size:26px;line-height:1;padding:7px 11px 5px}
+.card--feat .card__pct{background:#fff;color:var(--maroon)}
+.card__hot{font-size:var(--fs-s);color:var(--on-m-2)}
+.card__name{font-size:clamp(32px,2.8vw,44px);line-height:.92}
+.card__foot{margin-top:auto;display:flex;flex-direction:column;gap:16px;padding-top:12px}
+.card__prices{display:flex;flex-wrap:wrap;gap:4px 16px;align-items:baseline}
+.card__price{font-family:var(--display);font-size:clamp(48px,4.2vw,64px);line-height:1;color:var(--maroon)}
+.card--feat .card__price{color:#fff}
+.card__old{font-family:var(--display);font-size:clamp(22px,1.8vw,28px);color:var(--text-4);text-decoration-thickness:2px}
+.card--feat .card__old{color:var(--old-m)}
+.card__btn{height:62px;padding:0 24px;font-size:17px;border:1.5px solid var(--text);background:transparent;color:var(--text)}
+.card__btn:hover{background:var(--maroon);border-color:var(--maroon);color:#fff}
+.card--feat .card__btn{border:0;background:#fff;color:var(--text)}
+.card--feat .card__btn:hover{background:var(--on-m);color:var(--text)}
+.card__save{text-align:center;font-size:var(--fs-s);font-weight:600;color:var(--text-2)}
+.card--feat .card__save{color:#fff}
+.card__ended{font-size:var(--fs-s);color:var(--text-2)}
+.card--feat .card__ended{color:#fff}
+@media (min-width:1000px){
+  .cards{grid-template-columns:repeat(3,minmax(0,1fr));max-width:none}
+  .card__name{min-height:2.76em}
+}
+
+/* Что дальше */
+.steps__in{max-width:1440px;margin:0 auto;padding:clamp(56px,8vw,120px) var(--pad);display:flex;flex-direction:column;gap:clamp(40px,5vw,72px)}
+.steps__h2b{padding-left:24%}
+.steps__grid{display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(28px,3vw,40px) clamp(16px,2vw,28px)}
+.step{display:flex;flex-direction:column;gap:20px}
+.step__img{position:relative;aspect-ratio:9/10;background:#F3F3F3;overflow:hidden}
+.step__img img{position:absolute;inset:0;width:100%;height:100%;display:block;object-position:50% 40%}
+.step__row{display:flex;gap:16px;align-items:baseline}
+.step__n{flex:none;font-family:var(--display);font-size:clamp(36px,3vw,48px);line-height:1;color:var(--maroon)}
+.step__t{font-size:var(--fs);line-height:1.4;text-wrap:balance}
+@media (min-width:760px){.steps__grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+/* FAQ */
+.faqs__in{max-width:960px;margin:0 auto;padding:clamp(56px,8vw,120px) var(--pad);display:flex;flex-direction:column;gap:clamp(36px,4vw,56px)}
+.faqs__h{text-align:center}
+.faq{display:flex;flex-direction:column;gap:12px}
+.faq__item{background:var(--card)}
+.faq__q{width:100%;display:grid;grid-template-columns:1fr 32px;gap:16px;align-items:center;padding:22px clamp(20px,2.4vw,32px);min-height:72px;border:0;background:transparent;color:var(--text);text-align:left;font-size:var(--fs);font-weight:600;line-height:1.35;cursor:pointer}
+.faq__q:hover{color:var(--maroon)}
+.faq__sign{width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-size:26px;line-height:1;color:var(--maroon)}
+.faq__a{margin:0;padding:0 clamp(20px,2.4vw,32px) 26px;max-width:720px;font-size:var(--fs);line-height:1.55;color:var(--text-2)}
+
+/* Финал */
+.final{position:relative;min-height:clamp(520px,50vw,800px);display:flex;align-items:center;justify-content:center;background:#1C1312;color:#fff;overflow:hidden}
+.final__bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;display:block}
+.final__shade{position:absolute;inset:0;background:rgba(0,0,0,.4)}
+.final__in{position:relative;max-width:1200px;padding:clamp(56px,8vw,120px) var(--pad);display:flex;flex-direction:column;align-items:center;gap:clamp(24px,3vw,40px);text-align:center}
+.final__line{margin:0;font-size:clamp(18px,1.8vw,26px);line-height:1.3;text-wrap:balance}
+.final__btn{width:min(100%,460px);height:68px;padding:0 32px;font-size:18px}
+
+/* Подвал */
+.footer{overflow:hidden}
+.footer__in{max-width:1440px;margin:0 auto;padding:clamp(56px,6vw,88px) var(--pad) clamp(24px,3vw,40px);display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;font-size:var(--fs-s);line-height:1.5;color:var(--text-3)}
+.footer__in a{text-decoration:none}
+.footer__big{font-family:var(--display);text-transform:uppercase;font-size:16.2vw;line-height:.78;letter-spacing:-.045em;color:rgba(0,0,0,.12);white-space:nowrap;text-align:center;margin-bottom:-.06em}
+
+/* Состояние «распродажа завершена» */
+.is-ended [data-sale],.is-ended [data-buy]{display:none!important}
+
+/* Mobile < 760 */
+@media (max-width:759px){
+  :root{--bar:52px;--fs:16px}
+  .bar__bf{display:none}
+  .hide-narrow{display:none}
+  .show-narrow{display:inline}
+  .prod,.offers{scroll-margin-top:52px}
+  .strip{flex-direction:column;align-items:stretch}
+  .strip__btn{flex:none;width:100%}
+  .steps__h2b{padding-left:12%}
+  .hero__top{white-space:nowrap}
+  .hero__top .muted{display:none}
+  .card__btn{font-size:16px}
+}
+
+</style>
+<div id="bf-root"><!-- Закреплённая плашка -->
+<div class="bar" role="region" aria-label="Black Friday">
+  <div class="bar__in">
+    <span class="bar__dot" aria-hidden="true"></span>
+    <span class="bar__bf">Black Friday</span>
+    <span class="bar__badge" id="barBadge" hidden></span>
+    <span class="bar__note" id="barNote"></span>
+    <div class="bar__timer" id="barTimer" role="timer" aria-label="До конца распродажи" hidden></div>
+    <span class="bar__ended" id="barEnded" hidden>Распродажа завершена</span>
+    <button type="button" class="bar__btn" data-go="offers" data-sale><span class="hide-narrow">Выбрать обучение</span><span class="show-narrow">Выбрать</span></button>
+  </div>
+</div>
+<div class="bar-spacer" aria-hidden="true"></div>
+
+<main>
+  <!-- 01 Первый экран -->
+  <section class="hero">
+    <div class="hero__top">
+      <span>Эльмира Первакова <span class="muted">/ Black Friday</span></span>
+      <a href="https://instagram.com/elmira_sensei" target="_blank" rel="noopener">@elmira_sensei</a>
+    </div>
+    <div class="hero__grid">
+      <div class="hero__left">
+        <div class="hero__bf" aria-hidden="true"><div><div>Black</div><div class="accent">Friday</div></div></div>
+        <div class="hero__copy">
+          <h1 class="h1">Научу краситься для себя: от будней до вечера</h1>
+          <button type="button" class="btn btn--maroon hero__btn" data-go="offers" data-sale>Выбрать обучение</button>
+          <div class="proof">
+            <span class="proof__n">2 500+</span>
+            <span class="proof__t">учениц уже выбрали мои продукты, чтобы научиться краситься</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero__photo">
+        <img src="assets/bride.jpg" data-img="bride" alt="Эльмира Первакова в свадебном образе" fetchpriority="high">
+        <div class="hero__ended" id="heroEnded" hidden>Распродажа завершена</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Бегущая строка -->
+  <div class="marquee" aria-hidden="true"><div class="marquee__track" id="marquee"></div></div>
+
+  <!-- 03–04 Продукты -->
+  <div id="products"></div>
+
+  <!-- 05 Косметика -->
+  <section class="collage">
+    <div class="collage__in">
+      <div class="collage__a"><img src="assets/vanity.jpg" data-img="vanity" alt="Косметика на туалетном столике" loading="lazy"></div>
+      <div class="collage__t">
+        <p class="collage__h">Не нужно скупать <span class="accent">новую косметику</span></p>
+        <p class="collage__s">Начните с того, что уже есть в косметичке</p>
+      </div>
+      <div class="collage__b"><img src="assets/dior.jpg" data-img="dior" alt="Помада крупным планом" loading="lazy"></div>
+    </div>
+  </section>
+
+  <!-- 07 Выберите обучение -->
+  <section id="offers" class="offers">
+    <div class="offers__in">
+      <div class="offers__head">
+        <h2 class="h2 h2--xl">Выберите <span class="accent">обучение</span></h2>
+        <span class="offers__note" id="offersNote"></span>
+      </div>
+      <div class="cards" id="cards"></div>
+    </div>
+  </section>
+
+  <!-- 08 Что дальше -->
+  <section class="steps">
+    <div class="steps__in">
+      <h2 class="h2 h2--xl"><span class="line">Вы оплатили —</span><span class="line steps__h2b">что дальше?</span></h2>
+      <div class="steps__grid" id="steps"></div>
+    </div>
+  </section>
+
+  <!-- 09 Вопросы -->
+  <section class="faqs">
+    <div class="faqs__in">
+      <h2 class="h2 h2--lg faqs__h">Ответы на вопросы</h2>
+      <div class="faq" id="faq"></div>
+    </div>
+  </section>
+
+  <!-- 10 Финальный экран -->
+  <section class="final">
+    <img class="final__bg" src="assets/bg-flowers.jpg" data-img="bg-flowers" alt="" aria-hidden="true" loading="lazy">
+    <div class="final__shade" aria-hidden="true"></div>
+    <div class="final__in">
+      <h2 class="h2 h2--xl final__h">Научитесь краситься для себя по цене Black Friday</h2>
+      <p class="final__line" id="finalLine"></p>
+      <button type="button" class="btn btn--white final__btn" data-go="offers" data-sale>Выбрать обучение</button>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer__in">
+    <span class="pre" id="footSeller" hidden></span>
+    <a id="footPrivacy" target="_blank" rel="noopener" hidden>Политика обработки персональных данных</a>
+    <a id="footOffer" target="_blank" rel="noopener" hidden>Договор оферты</a>
+    <a id="footSupport" target="_blank" rel="noopener" hidden></a>
+  </div>
+  <div class="footer__big" aria-hidden="true">Elmira Sensei</div>
+</footer></div>
+<script>
+// Настройки лендинга. Меняйте только этот файл.
+window.SITE_CONFIG = {
+  // true — пока не заполнено всё нужное: показываются заглушки.
+  // false — для публикации: пустые поля скрываются, кнопки без ссылки не показываются.
+  previewMode: true,
+
+  // Окончание акции (ISO с часовым поясом). Пусто — таймер и даты скрыты, в тексте «Только сейчас».
+  saleEndsAt: '2026-11-30T23:59:59+03:00',
+  timeZone: 'Europe/Moscow',
+
+  // Цены, ₽ (проценты и экономия считаются автоматически)
+  coursePrice: 3990,
+  courseOldPrice: 7000,
+  sunmakeupPrice: 1990,
+  sunmakeupOldPrice: 5000,
+  bundlePrice: 5690,
+  bundleOldPrice: 12000,
+
+  // Ссылки на оплату (Продамус)
+  courseCheckoutUrl: 'https://payform.ru/nud4MpL/',
+  sunmakeupCheckoutUrl: 'https://payform.ru/and4MiJ/',
+  bundleCheckoutUrl: 'https://payform.ru/snd4Msj/',
+
+  // Сроки доступа
+  courseAccess: '3 месяца',
+  sunmakeupAccess: '3 месяца',
+  bundleAccess: '5 месяцев',
+  accessDelivery: '',        // например: 'в течение 15 минут' — добавляется в шаг «Пришлю доступ на почту»
+
+  // Ответы на вопросы про оплату и возврат (пусто — вопрос скрывается на опубликованном сайте)
+  faqPayment: '',
+  faqRefund: '',
+
+  // Адреса картинок. Пусто — берутся из папки assets/.
+  // Для Tilda: загрузите файлы и впишите их ссылки, например bride: 'https://static.tildacdn.com/...'
+  images: { bride: '', bathroom: '', evening: '', vanity: '', dior: '', envelope: '', tablet: '', 'elmira-mirror': '', 'bg-flowers': '' },
+
+  // Подвал
+  sellerDetails: '',         // реквизиты, переносы строк сохраняются
+  offerUrl: '',
+  privacyPolicyUrl: '',
+  supportContact: '',        // например: '@elmira_support'
+  supportUrl: ''             // например: 'https://t.me/elmira_support'
+};
+
+</script>
+<script>
+(function () {
+  'use strict';
+  var C = window.SITE_CONFIG || {};
+  var $ = function (id) { return document.getElementById(id); };
+  var t = function (v) { return (v == null ? '' : String(v)).trim(); };
+  var pad = function (n) { return String(n).padStart(2, '0'); };
+  var NB = ' ';
+  var draft = C.previewMode !== false;
+  var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+
+  // ---------- Типограф: неразрывные пробелы ----------
+  var SHORT = 'в|во|с|со|к|ко|у|о|об|от|до|по|за|на|из|без|для|при|про|над|под|и|а|но|да|или|не|ни|что|как|же|ли|бы|то';
+  var RE_SHORT = new RegExp('(^|[^\\p{L}\\p{N}])(' + SHORT + ')[ \\t\\n]+', 'giu');
+  var RE_DASH = /[ \t\n]+—/g;
+  var RE_NUM = /(\d)[ \t]+(?=[\p{L}₽%])/gu;
+  function typo(s) {
+    var prev;
+    do { prev = s; s = s.replace(RE_SHORT, '$1$2' + NB); } while (s !== prev);
+    return s.replace(RE_DASH, NB + '—').replace(RE_NUM, '$1' + NB);
+  }
+  function typografy(root) {
+    var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        var p = n.parentNode && n.parentNode.nodeName;
+        return p === 'SCRIPT' || p === 'STYLE' || !n.nodeValue.trim() ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    var nodes = [], n;
+    while ((n = w.nextNode())) nodes.push(n);
+    nodes.forEach(function (x) { var v = typo(x.nodeValue); if (v !== x.nodeValue) x.nodeValue = v; });
+  }
+
+  // ---------- Данные ----------
+  var fmt = function (n) { return Number(n).toLocaleString('ru-RU').replace(/ | |\s/g, NB) + NB + '₽'; };
+  var pctOf = function (n, o) { return o > n ? Math.round((1 - n / o) * 100) : 0; };
+  var num = function (v, d) { return v != null && v !== '' ? Number(v) : d; };
+
+  var cp = num(C.coursePrice, 3990), sp = num(C.sunmakeupPrice, 1990), bp = num(C.bundlePrice, 5690);
+  var cOld = num(C.courseOldPrice, 7000), sOld = num(C.sunmakeupOldPrice, 5000), bOld = num(C.bundleOldPrice, 12000);
+  var cPct = pctOf(cp, cOld), sPct = pctOf(sp, sOld), bPct = pctOf(bp, bOld);
+  var bSave = bOld - bp;
+  var disc = function (o, pc) { return pc > 0 ? { old: fmt(o), pct: '−' + pc + '%' } : { old: '', pct: '' }; };
+
+  var endStr = t(C.saleEndsAt) || '2026-11-30T23:59:59+03:00';
+  var end = Date.parse(endStr);
+  var hasEnd = !isNaN(end);
+  var dateStr = '';
+  if (hasEnd) {
+    try { dateStr = new Date(end).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', timeZone: t(C.timeZone) || 'Europe/Moscow' }); }
+    catch (e) { dateStr = new Date(end).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' }); }
+  }
+  var expired = function () { return hasEnd && Date.now() >= end; };
+
+  var courseAccess = t(C.courseAccess) || '3 месяца';
+  var sunAccess = t(C.sunmakeupAccess) || '3 месяца';
+  var bunAccess = t(C.bundleAccess) || '5 месяцев';
+  var delivery = t(C.accessDelivery);
+
+  function btn(url, label) {
+    var has = !!t(url);
+    return { show: has || draft, label: label, href: has ? t(url) : '#', dead: !has };
+  }
+  var BTN = {
+    course: btn(C.courseCheckoutUrl, 'Купить обучение'),
+    sun: btn(C.sunmakeupCheckoutUrl, 'Купить мастер-класс'),
+    bundle: btn(C.bundleCheckoutUrl, 'Купить комплект')
+  };
+  var D = { course: disc(cOld, cPct), sun: disc(sOld, sPct), bundle: disc(bOld, bPct) };
+
+  var LESSONS = ['Повседневный макияж', 'Вечерний и праздничный макияж', 'Smoky eyes', 'Макияж-трансформер 5 в 1'];
+  var SUN_ITEMS = ['База, которая решает всё', 'Невесомое покрытие', 'Макияж «без макияжа»', 'SOS-освежение и гайд в подарок'];
+
+  var PRODUCTS = [
+    { id: 'course', kicker: '', title: 'Обучение макияжу', sub: 'От дневного образа до вечернего: стрелки, smoky eyes и макияж-трансформер',
+      meta: '4 урока · 11 разных макияжей · доступ на ' + courseAccess, img: 'bathroom', alt: 'Эльмира красит губы у зеркала', pos: '50% 20%',
+      items: LESSONS, price: fmt(cp), d: D.course, btn: BTN.course },
+    { id: 'sunmakeup', kicker: 'Мастер-класс', title: 'Стойкий макияж без эффекта маски', sub: 'Один образ с нуля и все мои секреты стойкости',
+      meta: 'Доступ на ' + sunAccess, img: 'evening', alt: 'Эльмира с карандашом для губ', pos: '45% 30%',
+      items: SUN_ITEMS, price: fmt(sp), d: D.sun, btn: BTN.sun }
+  ];
+
+  var OFFERS = {
+    sun: { key: 'sun', name: 'Мастер-класс «Стойкий макияж»', price: fmt(sp), d: D.sun, btn: BTN.sun, save: sOld > sp ? 'Экономия ' + fmt(sOld - sp) : '' },
+    course: { key: 'course', name: 'Обучение макияжу', price: fmt(cp), d: D.course, btn: BTN.course, save: cOld > cp ? 'Экономия ' + fmt(cOld - cp) : '' },
+    bundle: { key: 'bundle', name: 'Обучение + мастер-класс', price: fmt(bp), d: D.bundle, btn: BTN.bundle, featured: true, save: bSave > 0 ? 'Экономия ' + fmt(bSave) : '' }
+  };
+
+  // ---------- Картинки (адреса можно переопределить в config.js → images) ----------
+  document.querySelectorAll('img[data-img]').forEach(function (im) {
+    var u = C.images && C.images[im.getAttribute('data-img')];
+    if (u) im.src = u;
+  });
+  function imgSrc(name) { return (C.images && C.images[name]) || 'assets/' + name + '.jpg'; }
+
+  // ---------- Кнопка покупки ----------
+  function buyLink(cls, b) {
+    var a = '<a class="btn ' + cls + '" data-buy href="' + esc(b.href) + '"' + (b.dead ? ' data-dead="1"' : '') + (b.show ? '' : ' hidden') + '>' + esc(b.label) + '</a>';
+    return a;
+  }
+
+  // ---------- Блоки продуктов ----------
+  var prodHtml = PRODUCTS.map(function (p) {
+    return '<section id="' + p.id + '" class="prod"><div class="prod__in">' +
+      '<div class="prod__head"><div class="prod__title">' + (p.kicker ? '<span class="kicker">' + esc(p.kicker) + '</span>' : '') +
+      '<h2 class="h2">' + esc(p.title) + '</h2></div>' +
+      '<div class="prod__side"><p class="prod__sub">' + esc(p.sub) + '</p><span class="prod__meta">' + esc(p.meta) + '</span></div></div>' +
+      '<div class="prod__grid"><div class="prod__photo"><img src="' + esc(imgSrc(p.img)) + '" alt="' + esc(p.alt) + '" loading="lazy" style="object-position:' + p.pos + '"></div>' +
+      '<div class="prod__items">' + p.items.map(function (it, i) {
+        return '<div class="item"><span class="item__t">' + esc(it) + '</span><span class="item__n">' + pad(i + 1) + '</span></div>';
+      }).join('') + '</div></div>' +
+      '<div class="strip"><div class="strip__prices"><span class="price strip__price">' + p.price + '</span>' +
+      (p.d.old ? '<s class="strip__old">' + p.d.old + '</s><span class="pct">' + p.d.pct + '</span>' : '') + '</div>' +
+      buyLink('btn--white strip__btn', p.btn) +
+      '<span class="ended" data-ended hidden>Распродажа завершена</span></div>' +
+      '</div></section>';
+  }).join('');
+  $('products').innerHTML = prodHtml;
+
+  // ---------- Карточки тарифов ----------
+  var mqWide = window.matchMedia('(min-width: 1000px)');
+  function cardHtml(o) {
+    var inner = '<article class="card' + (o.featured ? ' card--feat' : '') + '">' +
+      '<div class="card__badges">' + (o.d.pct ? '<span class="card__pct">' + o.d.pct + '</span>' : '') +
+      (o.featured ? '<span class="card__hot">Самый выгодный</span>' : '') + '</div>' +
+      '<h3 class="card__name">' + esc(o.name) + '</h3>' +
+      '<div class="card__foot"><div class="card__prices"><span class="card__price">' + o.price + '</span>' +
+      (o.d.old ? '<s class="card__old">' + o.d.old + '</s>' : '') + '</div>' +
+      buyLink('card__btn', o.btn) +
+      (o.save ? '<span class="card__save">' + o.save + '</span>' : '') +
+      '<span class="card__ended" data-ended hidden>Распродажа завершена</span></div></article>';
+    if (o.featured) return '<div class="card-wrap" id="offer-bundle"><div class="card-wrap__shadow" aria-hidden="true"></div>' + inner + '</div>';
+    return inner;
+  }
+  var lastWide = null;
+  function renderCards() {
+    var wide = mqWide.matches;
+    if (wide === lastWide) return;
+    lastWide = wide;
+    var order = wide ? ['sun', 'course', 'bundle'] : ['bundle', 'course', 'sun']; // порядок в DOM = визуальный
+    var box = $('cards');
+    box.innerHTML = order.map(function (k) { return cardHtml(OFFERS[k]); }).join('');
+    bindBuy(box);
+    typografy(box);
+    syncState();
+  }
+  function bindBuy(root) {
+    root.querySelectorAll('[data-dead]').forEach(function (a) { a.addEventListener('click', function (e) { e.preventDefault(); }); });
+  }
+  bindBuy($('products'));
+
+  // ---------- Шаги ----------
+  var STEPS = [
+    ['Пришлю доступ на почту' + (delivery ? ' ' + delivery : ''), 'envelope', 'Письмо с доступом', 'contain'],
+    ['Смотрите уроки в своём темпе', 'tablet', 'Урок на планшете', 'contain'],
+    ['Повторяйте за мной у зеркала', 'elmira-mirror', 'Эльмира у зеркала', 'cover']
+  ];
+  $('steps').innerHTML = STEPS.map(function (s, i) {
+    return '<div class="step"><div class="step__img"><img src="' + esc(imgSrc(s[1])) + '" alt="' + esc(s[2]) + '" loading="lazy" style="object-fit:' + s[3] + '"></div>' +
+      '<div class="step__row"><span class="step__n">' + pad(i + 1) + '</span><span class="step__t">' + esc(s[0]) + '</span></div></div>';
+  }).join('');
+
+  // ---------- FAQ ----------
+  var FAQ = [
+    ['У меня нет навыков визажиста. У меня получится?', 'Получится. Я показываю каждый шаг, поэтому вы спокойно повторите за мной в своём темпе.'],
+    ['Это прямой эфир? Вдруг я не успею?', 'Нет, уроки уже записаны. Смотрите, когда удобно, ставьте на паузу и возвращайтесь к нужному моменту.'],
+    ['Чем выгоден комплект?', bPct > 0
+      ? 'Комплект стоит ' + fmt(bp) + ' вместо ' + fmt(bOld) + ': скидка ' + bPct + '%, экономия ' + fmt(bSave) + '. Доступ на ' + bunAccess + '.'
+      : 'Комплект стоит ' + fmt(bp) + '. Доступ на ' + bunAccess + '.'],
+    ['Как долго доступны материалы?', 'Обучение и мастер-класс по отдельности — ' + courseAccess + ', комплект — ' + bunAccess + '.'],
+    ['Как оплатить? Есть рассрочка?', t(C.faqPayment) || (draft ? '[Способы оплаты и условия рассрочки]' : '')],
+    ['Можно ли вернуть деньги?', t(C.faqRefund) || (draft ? '[Условия возврата по договору оферты]' : '')]
+  ].filter(function (f) { return f[1]; });
+  var faqBox = $('faq'), faqSetters = [];
+  FAQ.forEach(function (f, i) {
+    var item = document.createElement('div'); item.className = 'faq__item';
+    var q = document.createElement('button'); q.type = 'button'; q.className = 'faq__q'; q.id = 'faq-q' + i;
+    q.setAttribute('aria-controls', 'faq-a' + i);
+    var qs = document.createElement('span'); qs.textContent = f[0];
+    var sign = document.createElement('span'); sign.className = 'faq__sign';
+    q.appendChild(qs); q.appendChild(sign);
+    var a = document.createElement('p'); a.className = 'faq__a'; a.id = 'faq-a' + i; a.textContent = f[1];
+    a.setAttribute('role', 'region'); a.setAttribute('aria-labelledby', q.id);
+    function set(open) { q.setAttribute('aria-expanded', open ? 'true' : 'false'); sign.textContent = open ? '−' : '+'; a.hidden = !open; }
+    set(i === 0);
+    q.addEventListener('click', function () {
+      var willOpen = q.getAttribute('aria-expanded') !== 'true';
+      faqSetters.forEach(function (s) { s(false); });
+      set(willOpen);
+    });
+    faqSetters.push(set);
+    item.appendChild(q); item.appendChild(a); faqBox.appendChild(item);
+  });
+
+  // ---------- Подвал ----------
+  var seller = t(C.sellerDetails) || (draft ? '[ИП, ИНН продавца]' : '');
+  if (seller) { $('footSeller').hidden = false; $('footSeller').textContent = seller; }
+  var privHref = t(C.privacyPolicyUrl) || (draft ? '#' : '');
+  var offerHref = t(C.offerUrl) || (draft ? '#' : '');
+  if (privHref) { $('footPrivacy').hidden = false; $('footPrivacy').href = privHref; }
+  if (offerHref) { $('footOffer').hidden = false; $('footOffer').href = offerHref; }
+  var support = t(C.supportContact) || (draft ? '[контакт поддержки]' : '');
+  if (support) { var fs = $('footSupport'); fs.hidden = false; fs.textContent = 'Помощь с оплатой: ' + support; fs.href = t(C.supportUrl) || '#'; }
+
+  // ---------- Бегущая строка ----------
+  var phrases = [['Black Friday', '#FFFFFF'], ['Обучение макияжу', '#FFFFFF'], [dateStr ? 'Только до ' + dateStr : 'Только сейчас', '#BDBDBD']];
+  var mq = $('marquee');
+  for (var r = 0; r < 4; r++) phrases.forEach(function (p) {
+    var s1 = document.createElement('span'); s1.className = 'marquee__t'; s1.style.color = p[1]; s1.textContent = typo(p[0]);
+    var s2 = document.createElement('span'); s2.className = 'marquee__sep';
+    mq.appendChild(s1); mq.appendChild(s2);
+  });
+
+  // ---------- Состояние акции ----------
+  var timer = $('barTimer'), timerEls = [];
+  ['д', 'ч', 'м', 'с'].forEach(function (l) {
+    var u = document.createElement('span'); u.className = 'bar__unit';
+    var v = document.createElement('b'); v.textContent = '0';
+    var s = document.createElement('i'); s.textContent = l;
+    u.appendChild(v); u.appendChild(s); timer.appendChild(u); timerEls.push(v);
+  });
+  var mqNarrow = window.matchMedia('(max-width: 759px)');
+  function syncState() {
+    var ex = expired();
+    document.documentElement.classList.toggle('is-ended', ex);
+    document.querySelectorAll('[data-ended]').forEach(function (n) { n.hidden = !ex; });
+    $('heroEnded').hidden = !ex;
+    $('barEnded').hidden = !ex;
+    $('barTimer').hidden = ex || !hasEnd;
+    var badge = $('barBadge');
+    badge.hidden = ex || !bPct;
+    badge.textContent = bPct ? (mqNarrow.matches ? '−' + bPct + '%' : 'Комплект −' + bPct + '%') : '';
+    $('barNote').textContent = !ex && dateStr ? typo('Цены снижены до ' + dateStr + ' включительно') : '';
+    $('offersNote').textContent = typo(ex ? 'Распродажа завершена' : (dateStr ? 'Цены Black Friday действуют до ' + dateStr + ' включительно' : 'Цены Black Friday'));
+    $('finalLine').textContent = typo(ex ? 'Распродажа завершена' : (bPct > 0 ? 'Комплект −' + bPct + '% и экономия ' + fmt(bSave) : 'Скидки на обучение') + (dateStr ? ' — до ' + dateStr : ''));
+  }
+  function tick() {
+    if (!hasEnd) return;
+    var diff = Math.max(0, end - Date.now());
+    var s = Math.floor(diff / 1000);
+    var vals = [String(Math.floor(s / 86400)), pad(Math.floor(s % 86400 / 3600)), pad(Math.floor(s % 3600 / 60)), pad(s % 60)];
+    vals.forEach(function (v, i) { if (timerEls[i].textContent !== v) timerEls[i].textContent = v; });
+    if (diff <= 0) syncState();
+  }
+
+  // ---------- Прокрутка ----------
+  function scrollToId(id) {
+    var node = $(id);
+    if (!node) return;
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var off = window.innerWidth < 760 ? 52 : 56;
+    var sc = document.scrollingElement || document.documentElement;
+    sc.scrollTo({ top: node.getBoundingClientRect().top + sc.scrollTop - off, behavior: reduce ? 'auto' : 'smooth' });
+  }
+  document.addEventListener('click', function (e) {
+    var g = e.target.closest && e.target.closest('[data-go]');
+    if (!g) return;
+    e.preventDefault();
+    scrollToId(g.getAttribute('data-go'));
+  });
+
+  // ---------- Запуск ----------
+  syncState();
+  typografy($('bf-root') || document.body);
+  renderCards();
+  syncState();
+  tick();
+  mqWide.addEventListener ? mqWide.addEventListener('change', renderCards) : mqWide.addListener(renderCards);
+  mqNarrow.addEventListener ? mqNarrow.addEventListener('change', syncState) : mqNarrow.addListener(syncState);
+  setInterval(tick, 1000);
+  document.addEventListener('visibilitychange', tick);
+})();
+
+</script>
